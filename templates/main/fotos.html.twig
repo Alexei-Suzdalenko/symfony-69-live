@@ -1,0 +1,57 @@
+{% set myVal = 0 %}
+<div id="delete_images">
+    {% for image in arr %}
+        {% if image is empty %}
+        {% else %}
+            <img src="{{ asset('/image/') }}{{ image }}" alt="" width="70px" height="70px">
+            <input type="button" value="Eliminar" id="img-{{ myVal }}">
+        {% endif %}
+        {% set myVal = myVal + 1 %}
+    {% endfor %}
+</div>
+<br><br><br>
+{{ form(form) }}
+
+{% if arr|length > 6 %}
+    {% else %}
+
+{% endif %}
+
+<script>
+    var images = document.getElementById('delete_images').getElementsByTagName('input');
+    for (let item of images) {
+        item.addEventListener('click', displayId)
+    }
+
+    async function displayId(e) {
+        let question = confirm('¿Estás seguro de eliminar esta foto?');
+        if(!question) return ;
+        let myString = e.target.id;
+        let partsOfStr = myString.split('-');
+        let imageSelectedId = partsOfStr[1];
+
+        console.log(imageSelectedId);
+
+
+        const response = await fetch('/delete/' + imageSelectedId, {
+            method: 'GET', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin',
+        }).then((response) => {
+            window.location.href = '/fotos';
+            return response.json();
+        });
+    }
+</script>
+
+<style>
+    input:hover{cursor: pointer;}
+</style>
+
+Сергий спаси и сохрани нас от ХАБАТНИКОВ
+
+
+{%  if redirection == true %}
+<script>window.location.href='/fotos';</script>
+{% endif %}

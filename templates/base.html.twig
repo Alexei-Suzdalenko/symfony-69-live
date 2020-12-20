@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es-ES" prefix="og: http://ogp.me/ns#">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}  {% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="{{ description }}">
+        <meta name="robots" content="index, follow, all">
+        <link rel="icon" href="/i/icon_32.png">
+        <link rel="shortcut icon" href="/i/favicon.ico" type="image/vnd.microsoft.icon">
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+ 
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+        <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="yandexbot" content="index, follow" />
+        <link rel="canonical" href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}" />
+        <meta property="og:locale" content="es_ES" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="{{ description }}" />
+        <meta property="og:description" content="{{ description }}" />
+        <meta property="og:url" content="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}" />
+        <meta property="og:site_name" content="{{ description }}" />
+        <meta property="og:image" content="http://escort69.live/i/slide03.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+    </head>
+    <body>
+    <div id="canvas">
+        <div id="box_wrapper">
+             <div class="page_header_wrapper header_white affix-top-wrapper" style="height: 90px;">
+                <header class="page_header header_logo_center header_white affix-top">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12 text-md-center">
+                                <div class="logo_wrapper">
+                                    <a href="/" class="logo top_logo">
+                                        <img src="{{ asset('/i/logo.png') }}" alt="Chicas, Chicos Escort">
+                                    </a>
+                                </div>
+                                <!-- header toggler -->
+                                <span class="toggle_menu">
+                                <span></span>
+                            </span>
+
+                                <nav class="mainmenu_wrapper" style="">
+                                    <ul class="mainmenu nav sf-menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+                                        <li class="active">
+                                            <a href="/" class="sf-with">Inicio</a>
+                                        </li>
+                                        <li>
+                                            <a href="/hombre-escort" class="sf-with">Chicos</a>
+                                        </li>
+                                        <li>
+                                            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                                <a href="#" class="sf-with">{{ app.user.email }}</a>
+                                            {% else %}
+                                            <a href="{{ path('login') }}" class="sf-with">Iniciar sesión</a>
+                                            {% endif %}
+                                        </li>
+                                        <li>
+                                            <a href="/" class="sf-with">Chicas</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sf-with-ul">Provincias</a>
+                                            <div class="mega-menu" style="display: none; margin-top: 5px; left: -346px;">
+                                                <ul class="mega-menu-row">
+                                                    <li class="mega-menu-col">
+                                                        <ul>
+                                                            {% for prov in provinces %}
+                                                            {% set numbrer = prov.id %}
+                                                                {% if numbrer <= 11 %}
+                                                            <li>
+                                                                <a href="{{ path('ussprov', {'province':prov.slug}) }}">{{ prov.name }}</a>
+                                                            </li>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </li>
+                                                    <li class="mega-menu-col">
+                                                        <ul>
+                                                            {% for prov in provinces %}
+                                                                {% set numbrer = prov.id %}
+                                                                {% if numbrer > 11 and numbrer <= 22 %}
+                                                                    <li>
+                                                                        <a href="{{ path('ussprov', {'province':prov.slug}) }}">{{ prov.name }}</a>
+                                                                    </li>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </li>
+                                                    <li class="mega-menu-col">
+                                                        <ul>
+                                                            {% for prov in provinces %}
+                                                                {% set numbrer = prov.id %}
+                                                                {% if numbrer > 22 and numbrer <= 33 %}
+                                                                    <li>
+                                                                        <a href="{{ path('ussprov', {'province':prov.slug}) }}">{{ prov.name }}</a>
+                                                                    </li>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </li>
+                                                    <li class="mega-menu-col">
+                                                        <ul>
+                                                            {% for prov in provinces %}
+                                                                {% set numbrer = prov.id %}
+                                                                {% if numbrer > 33 and numbrer <= 44 %}
+                                                                    <li>
+                                                                        <a href="{{ path('ussprov', {'province':prov.slug}) }}">{{ prov.name }}</a>
+                                                                    </li>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </li>
+                                                    <li class="mega-menu-col">
+                                                        <ul>
+                                                            {% for prov in provinces %}
+                                                                {% set numbrer = prov.id %}
+                                                                {% if numbrer > 44 and numbrer < 55 %}
+                                                                    <li>
+                                                                        <a href="{{ path('ussprov', {'province':prov.slug}) }}">{{ prov.name }}</a>
+                                                                    </li>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                                <a href="{{ path('ajustes') }}" class="sf-with">Ajustes personales</a>
+                                            {% else %}
+                                                <a href="{{ path('registaracion') }}" class="sf-with">Anunciase gratis</a>
+                                            {% endif %}
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+             </div>
+
+            {% block body %}{% endblock %}
+
+            <footer class="page_footer ds ms section_padding_top_75 section_padding_bottom_65 columns_padding_25">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-4 col-sm-4">
+                            <div class="widget">
+                                <h3 class="widget-title">Contactos</h3>
+
+                                <div class="media small-teaser">
+                                    <div class="media-left">
+                                        <i class="fa fa-globe highlight2"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        Cantabria, Santander
+                                    </div>
+                                </div>
+
+                                <div class="media small-teaser">
+                                    <div class="media-left">
+                                        <i class="fa fa-whatsapp highlight2" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <a target="_blank" href="https://api.whatsapp.com/send?phone=+79003735869&text=Hola http://escort69.live" style="color:grey;">9003735869</a>
+                                    </div>
+                                </div>
+                                 <div class="media small-teaser">
+                                     <div class="media-left">
+                                         <i class="fa fa-envelope highlight2" aria-hidden="true"></i>
+                                     </div>
+                                     <div class="media-body underlined-links greylinks">
+                                        <a href="mailto:chicas.escort.free@gmail.com">chicas.escort.free@gmail.com</a>
+                                     </div>
+                                 </div>
+
+                                 <div class="media small-teaser">
+                                     <div class="media-left">
+                                         <i class="fa fa-youtube highlight2" aria-hidden="true"></i>
+                                     </div>
+                                     <div class="media-body underlined-links greylinks">
+                                        <iframe width="200" height="120" src="https://www.youtube.com/embed/9PzIE1zLnI4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                     </div>
+                                 </div>
+                            </div>
+                        </div>
+                       
+                        <div class="col-md-4 col-sm-4">
+                            <div class="widget">
+                                <h3 class="widget-title">FAC</h3>
+                                <p class="greylinks"><a target="_blank" href="{{ path('avisolegal') }}">Aviso legal</a><br>
+                                        <a target="_blank" href="{{ path('polpri') }}">Politica privacidad</a><br>
+                                        <a href="/s">S</a></span><br>
+                                        <a href="/sitemap.xml">SiteMap</a></p>
+                            </div>
+                        </div>
+                      
+                        <div class="col-md-4 col-sm-4">
+                            <div class="widget">
+                                <h3 class="widget-title">Provincias</h3>
+                                <p class="greylinks">
+                                    {% for prov in provinces %}
+                                    {% set numbrer = prov.id %}
+                                    <a target="_blank" href="{{ path('ussprov', {'province':prov.slug}) }}">{{ prov.name }}</a>
+                                    {% endfor %}
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </footer>
+
+            <section class="ls page_copyright table_section section_padding_50">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <p class="grey thin">© Propiedad intelectual publica</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+    <a href="#" id="toTop" style="display: none;"><span id="toTopHover"></span>To Top</a>
+        <script src="{{ asset('/js/compressed.js') }}"></script>
+        <script src="{{ asset('/js/main.js') }}"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161862640-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-161862640-4');
+    </script>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(65439748, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true,
+            ecommerce:"dataLayer"
+        });
+    </script>
+    <!-- /Yandex.Metrika counter -->
+    </body>
+</html>
+

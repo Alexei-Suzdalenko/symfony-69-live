@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/i/icon_32.png">
+    <link rel="shortcut icon" href="/i/favicon.ico" type="image/vnd.microsoft.icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://startbootstrap.github.io/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://startbootstrap.github.io/startbootstrap-sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
+    <style>
+        .bg-gradient-primary {
+            background-color: #73334D;
+            background-image: linear-gradient(180deg,#73334D 10%,#73334D 100%);
+            background-size: cover;
+        }
+        .btn-primary {color: #fff; background-color: #73334D;border-color: #73334D;}
+        .text-primary {
+            color: #73334D!important;
+        }
+        .username{color: white; margin-left: 7%; margin-top: 11px;}
+        .soc-persona{width: 77px;height: 77px;}
+        .top{margin-top: 44px; }
+        #wrapper {background:#F8F9FC; }
+        .class_form_data{width: 100%; display: block; color:#73334D; margin-bottom: 22px;}
+        label{color: #73334D;display: block;}
+        .textareaclass{width:100%; height: 311px;margin-bottom: 33px;}
+        .button_form_data{
+            background:#73334D ; border: none;outline: none; color: white;padding: 4px;
+        }
+        #data_user_image{margin-bottom: 22px;}
+        .d-none:hover{background: grey;}
+        .save_fotos_class{color: #fff; background-color: #73334D;border:none;padding: 4px; margin-top: 33px; }
+        .wrapper_image{display: inline-block;}
+        .div_delete_image{text-align: center;}
+        .delete_input{color: #fff; background-color: #73334D;border:none;padding: 4px; margin: 7px; }
+        #fotos_image{margin-top: 77px; display: block;}
+    </style>
+</head>
+<body>
+<script>var nameProvince = false; var nameUser = false; var nameTown = '0';</script>
+{% if province.slug is defined %} <script> nameProvince = '{{ province.slug }}';</script>  {% endif %}
+{% if data_user.slug is defined %} <script> nameUser = '{{ data_user.slug}}';</script> {% endif %}
+{% if data_user.town is defined %} <script> nameTown = '{{ data_user.town}}';</script> {% endif %}
+
+<div id="wrapper">
+
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ path('ajustes') }}">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">Admin</div>
+        </a>
+        <li class="nav-item">
+            <a target="_blank" class="nav-link collapsed" href="/" id="fotoPersonal"><i class="fa fa-home" aria-hidden="true"></i><span>Inicio</span></a>
+        </li>
+        <hr class="sidebar-divider my-0">
+                <div class="username">
+                    <img src="{% if data_user.image is defined and data_user.image is not null %}{{asset('/image/'~data_user.image)}}{% else %}{{ asset('/i/none.jpg') }}{% endif %}" alt="" class="soc-persona">
+                </div></a>
+                <div class="username">{{ user.email }}</div></a>
+                <div class="username">{{ user.plain }}</div></a>
+        <br>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Interface
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" id="dateDefault">
+                <i class="fa fa-user fa-cog"></i> <span>Usuario</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" id="datePersonal">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Datos Personales</span>
+            </a>
+        </li>
+
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" id="fotoPersonalButton">
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>Fotografías</span>
+            </a>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" id="fotoPersonalButton">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+                <span id="deleteThisUserComplete">Eliminar Usuario</span>
+            </a>
+        </li>
+    </ul>
+    <br>
+    <div id="content-wrapper" class="d-flex flex-column top">
+        <div id="content">
+
+            <div class="container-fluid">
+
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Ajustes de datos personales y fotografías</h1>
+                    <p>¡Para tener éxito, añade fotografías reales!</p>
+                    <a href="#" class="btn btn-sm btn-primary shadow-sm" id="see_user_page"><i class="fa fa-user fa-sm text-white-50"></i> Ver perfil</a>
+                </div>
+
+                <div class="row">
+                    <!-- Area Chart -->
+                    <div class="col-xl-12 col-lg-12">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary" id="title_data">Datos actuales</h6>
+                            </div>
+                            <div class="card-body" id="">
+                                    <div id="datos_personales">
+                                        <p>Soy: {% if data_user.sex is defined %}{{data_user.sex}}{% endif %}</p>
+                                        <p>Provincia: {% if province.name is defined %}{{province.name}}{% endif %}</p>
+                                        <p>Nombre: {% if data_user.name is defined %}{{data_user.name }}{% endif %}</p>
+                                        <p>Nacionalidad: {% if data_user.nacion is defined %}{{data_user.nacion }}{% endif %}</p>
+                                        <p>Cuidad: {% if data_user.town is defined %}{{data_user.town }}{% endif %}</p>
+                                        <p>Edad: {% if data_user.age is defined %}{{data_user.age }}{% endif %}</p>
+                                        <p>Telefono: {% if data_user.tlf is defined %}{{data_user.tlf }}{% endif %}</p>
+                                        <p>Precio: {% if data_user.price is defined %}{{data_user.price }}{% endif %}</p>
+                                        <p>Sobre mi: {% if data_user.sobremi is defined %}{{data_user.sobremi }}{% endif %}</p>
+                                    </div>
+                                    <div class="card-body" id="form_datos_personles" style="display:none;">
+                                        {{ form(form) }}
+                                    </div>
+                                    <div class="card-body" id="form_fotos" style="display:none;">
+                                        {% set myVal = 0 %}
+                                        <div id="delete_images">
+                                            {% for image in arr %}
+                                                {% if image is empty %}
+                                                {% else %}
+                                                    <div class="wrapper_image">
+                                                       <img src="{{ asset('/image/') }}{{ image }}" alt="" width="141px" height="172px">
+                                                       <div class="div_delete_image">
+                                                           <input type="button" value="Eliminar" id="img-{{ myVal }}" class="delete_input">
+                                                       </div>
+                                                    </div>
+                                                {% endif %}
+                                                {% set myVal = myVal + 1 %}
+                                            {% endfor %}
+                                        </div>
+                                        {{ form(form_fotos) }}
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% block body %}{% endblock %}
+
+<script>
+    var button_data_user_Guardar = document.getElementById('data_user_Guardar');
+    var alexeiSuzdalenko = window.localStorage.alexeiSuzdalenko || 'default';
+    var dateDefault = document.getElementById('dateDefault');
+    var datePersonal = document.getElementById('datePersonal');
+    var fotoPersonalButton = document.getElementById('fotoPersonalButton');
+    var default_card_body = document.getElementById('datos_personales');
+    var form_datos_personles = document.getElementById('form_datos_personles');
+    var form_fotos = document.getElementById('form_fotos');
+
+    function changeSituation() {
+        if (window.localStorage.alexeiSuzdalenko === 'default'){
+            default_card_body.style.display = 'block';
+            form_datos_personles.style.display = 'none';
+            form_fotos.style.display = 'none';
+        } else if (window.localStorage.alexeiSuzdalenko === 'show_form_datos_personales'){
+            default_card_body.style.display = 'none';
+            form_datos_personles.style.display = 'block';
+            form_fotos.style.display = 'none';
+        } else if (window.localStorage.alexeiSuzdalenko === 'show_form_fotos'){
+            default_card_body.style.display = 'none';
+            form_datos_personles.style.display = 'none';
+            form_fotos.style.display = 'block';
+        }
+    }
+    dateDefault.addEventListener('click', function () {
+        window.localStorage.alexeiSuzdalenko = 'default'; changeSituation();
+    });
+    datePersonal.addEventListener('click', function () {
+        window.localStorage.alexeiSuzdalenko = 'show_form_datos_personales'; changeSituation();
+    });
+    fotoPersonalButton.addEventListener('click', function () {
+        window.localStorage.alexeiSuzdalenko = 'show_form_fotos'; changeSituation();
+    });
+    button_data_user_Guardar.addEventListener('click', function () {
+        window.localStorage.alexeiSuzdalenko = 'default';
+    });
+
+    changeSituation();
+
+
+
+
+
+
+
+
+
+
+
+
+    var images = document.getElementById('delete_images').getElementsByTagName('input');
+    for (let item of images) {
+        item.addEventListener('click', displayId)
+    }
+    async function displayId(e) {
+        let question = confirm('¿Estás seguro de eliminar esta foto?');
+        if(!question) return ;
+        let myString = e.target.id;
+        let partsOfStr = myString.split('-');
+        let imageSelectedId = partsOfStr[1];
+
+        console.log(imageSelectedId);
+        const response = await fetch('/delete_foto/' + imageSelectedId, {
+            method: 'GET', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin',
+        }).then((response) => {
+            window.location.href = '/ajustes';
+            return response.json();
+        });
+    }
+
+
+
+document.getElementById('see_user_page').addEventListener('click',function (e) {
+    e.preventDefault();
+    if (nameProvince && nameUser){
+        let page = '/escort/'+nameProvince+'/' + nameTown + '/'+nameUser; window.open(page);
+
+    } else {
+        alert ('Página de usuario necesita el nombre, provincia de usuario y FOTO, rellene campos necesarios por favor');
+    }
+});
+
+
+    var password = '{{user.plain}}';
+    var userDeletId = '{{user.id}}'
+    var deleteThisUserComplete = document.getElementById('deleteThisUserComplete');
+
+    deleteThisUserComplete.addEventListener('click', deleteCompleteUserData)
+
+    async function deleteCompleteUserData() {
+        let queryPassword = prompt('Introduzca la contraseña para eliminar completamente el usuario');
+        if( queryPassword == password){
+
+            const response = await fetch('/delete_user', {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin',
+                body: JSON.stringify({'user': userDeletId})
+            }).then((response) => {
+                // window.location.href = '/ajustes';
+                return response.json();
+            });
+            if(response.result == userDeletId){
+                alert('Todos los datos eliminados');
+                window.location.href = "https://www.google.com/search?q=Chicas+Escort+www.escort69.live";
+            }
+        }  else {
+              alert('Has introducido una contraseña incorrecta');
+          };
+
+
+
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

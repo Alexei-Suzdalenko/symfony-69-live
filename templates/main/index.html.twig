@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ title }}{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <section class="intro_section page_mainslider ds">
+        <div class="flexslider" data-nav="false">
+            <ul class="slides">
+                <li style="width: 100%; float: left; margin-right: -100%; position: relative; opacity: 1; display: block; z-index: 2;" class="flex-active-slide" data-thumb-alt="">
+                    <img src="{{slider}}" alt="Chicas, chicos Escort" draggable="false">
+              
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 text-right">
+                                <div class="slide_description_wrapper">
+                                    <div class="slide_description text-center">
+                                        <div class="intro-layer animated fadeInUp" data-animation="fadeInUp" style="visibility: hidden;">
+                                            <h3 class="text-uppercase">
+                                                Agencia online
+                                            </h3>
+                                        </div>
+                                        <div class="intro-layer animated fadeInUp" data-animation="fadeInUp" style="visibility: hidden;">
+                                            <h1 class="text-uppercase big">
+                                                <a href="/"> Chicas </a> / <a href="{{ path('hombre_escort') }}">Chicos</a>  <br> Escort
+                                            </h1>
+                                        </div>
+                                        <div class="intro-layer inline-content animated fadeInUp" data-animation="fadeInUp" style="visibility: hidden;">
+                                            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                                <a href="{{ path('ajustes') }}" class="theme_button color2" class="sf-with">Ajustes personales</a>
+                                                {% else %}
+                                            <a class="theme_button color2" href="{{ path('registaracion') }}">Registrarse</a>
+                                            <a class="theme_button inverse"  href="{{ path('login') }}">Iniciar sesión</a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul><div class="container nav-container"><ol class="flex-control-nav flex-control-paging"></ol></div></div>
+        <!-- eof flexslider -->
+    </section>
+
+    <section><!-- user cards -->
+        <div class="container-fluid">
+           <div class="row">
+               <div style="text-align: center" id="sex_content"><!-- user.image|length and user.name|length and user.slugprovince|length and user.slug|length -->
+                   {% for user in pagination %}
+                       {% if user.name|length and user.slugprovince|length and user.slug|length %}
+                        <div class="onespam">
+                            <img src="{{ asset('/image/') }}{{ user.image }}" alt="Escort {{user.town}} {{ user.name }}">
+                            <p class="nameuser"><a class="user_a" href="{{ path('show_only_user',{'province':user.slugprovince, 'town': user.town, 'user_slug':user.slug}) }}">{{ user.name }}</a></p>
+                            <p class="town"><a class="title_town" href="{{ path('town_escort',{'slugtown': user.townslug, 'town': user.town }) }}">{{user.town}}</a></p>
+                        </div>
+                       {% endif %}
+                   {% endfor %}
+               </div>
+           </div>
+        </div>
+    </section>
+
+
+    <div class="container" style="margin-top: 44px">
+        <div class="row">
+            <div class="navigation">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+        </div>
+    </div>
+
+
+    <section id="contacts" class="cs background_cover page_banner section_padding_top_65 section_padding_bottom_65">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <span class="small-text main_bg_color2">24/7 ATENCIÓN</span>
+                    <p class="big playfair topmargin_10"><a target="_blank" href="https://api.whatsapp.com/send?phone=+79003735869&text=escort69.live">9003735869</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let sexContent = document.getElementById('sex_content');
+        let aUser = sexContent.getElementsByTagName('a');
+        let images = sexContent.getElementsByTagName('img');
+
+         for(let i = 0; i < images.length; i++){
+            let url = images[i];
+            console.log(url.src);
+            if(url.src == 'http://127.0.0.1:8000/image/'){
+                images[i].src = 'http://127.0.0.1:8000/i/none.jpg';
+            }
+            if( url.src == 'https://www.escort69.live/image/'){
+                images[i].src = 'https://escort69.live/i/none.jpg';
+            }
+        }
+
+        let lengthUserA = aUser.length;
+
+        for(let i = 0; i < lengthUserA; i++){
+            let text = aUser[i].text.substring(0,15);
+            aUser[i].innerHTML = text;
+        }
+    </script>
+
+
+{% endblock %}
+
+
+

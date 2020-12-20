@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{ title }} Escort {% endblock %}
+{% block body %}
+
+    <section class="page_breadcrumbs ds parallax section_padding_75" style="background-position: 50% 1px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <a href=""><h1>Cuidad de {{ title }} Escort</h1></a>
+                  <!--  <ol class="breadcrumb greylinks">
+                    <li>
+                        <a href="{{ path('ussprov', {'province': 1}) }}">Provincia de 1}</a>
+                    </li>
+                    </ol> -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <br><br>
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div style="text-align: center" id="sex_content">
+                    {% for user in allusers %}
+                        {% if user.name|length and user.slugprovince|length and user.slug|length %}
+                            <div class="onespam">
+                                <img src="{{ asset('/image/') }}{{ user.image }}" alt="{{ title }} Escort, putas, follar, {{user.town}}" class="image_custom_user">
+                                <p class="nameuser"><a class="user_a" href="{{ path('show_only_user',{'province':user.slugprovince, 'town': user.town, 'user_slug':user.slug}) }}">{{ user.name }}</a></p>
+                                <p class="town"><a class="title_town" href="{{ path('town_escort',{'slugtown': user.townslug, 'town': title}) }}">{% if user.town is defined %}{{user.town}}{% endif %}</a></p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <br><br><br>
+    <script>
+        let sexContent = document.getElementById('sex_content');
+        let aUser = sexContent.getElementsByTagName('a');
+        let lengthUserA = aUser.length;
+
+        for(let i = 0; i < lengthUserA; i++){
+            let text = aUser[i].text.substring(0,15);
+            aUser[i].innerHTML = text;
+        }
+
+         let images = sexContent.getElementsByTagName('img');
+
+         for(let i = 0; i < images.length; i++){
+            let url = images[i];
+            if(url.src == 'http://127.0.0.1:8000/image/'){
+                images[i].src = 'http://127.0.0.1:8000/i/none.jpg';
+            }
+             if( url.src == 'https://www.escort69.live/image/'){
+                images[i].src = 'https://escort69.live/i/none.jpg';
+            }
+        }
+    </script>
+{% endblock %}

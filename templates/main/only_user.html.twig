@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+
+
+
+
+{% block title %}❤️ {% if only_user.town is defined %}{{only_user.town}}{% endif %} Escort {{only_user.province.name}} {{only_user.name}} ❤️ {% endblock %}
+
+
+{% block body %}
+    <section class="page_breadcrumbs ds parallax section_padding_75" style="background-position: 50% 1px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <a href="{{ path('show_only_user',{'province':only_user.province.slug, 'town' : only_user.town, 'user_slug':only_user.slug }) }}"><h1>Escort {{only_user.town}}</h1></a>
+                    <ol class="breadcrumb greylinks">
+                        <li>
+                            <a href="/">Inicio</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('town_escort',{'slugtown': only_user.townslug, 'town': only_user.town }) }}">Cuidad de {{only_user.town}}</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('ussprov', {'province': only_user.province.slug}) }}">Provincia de {{only_user.province.name}}</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section_padding_100 columns_padding_25 ls">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="vertical-item content-padding text-center">
+                        <div class="item-media">
+                            <img src="{{ asset('/image/')}}{{ only_user.image }}" alt="">
+                        </div>
+                        <div class="item-content transp_gradient_bg">
+                            <h3 class="model-name">
+                                <a href="{{ path('show_only_user',{'province':only_user.province.slug,'town' : only_user.town, 'user_slug':only_user.slug}) }}">{{only_user.name}}</a>
+                            </h3>
+                            <p class="small-text lusitana highlight">Escort {% if only_user.nacion is defined %}{{only_user.nacion}}{% endif %}</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-7">
+                    <h3>Sobre el modelo</h3>
+                    <p>
+                        {% if only_user.sobremi is defined %}{{only_user.sobremi}}{% endif %}
+                    </p>
+                    <p>
+                        Precio:  {% if only_user.price is defined %}{{only_user.price}}{% endif %}
+                    </p>
+                    <p>
+                      Edad:  {% if only_user.age is defined %}{{only_user.age}}{% endif %}
+                    </p>
+
+                    <div class="media small-teaser grey">
+                        <div class="media-left"><i class="fa fa-globe highlight2"></i> <a target="_blank" href="{{ path('ussprov', {'province': only_user.province.slug}) }}"> {{ only_user.province.name }}</a></div>
+                    </div>
+
+                    <div class="media small-teaser grey">
+                        <div class="media-left">
+                            <i class="fa fa-whatsapp highlight2" aria-hidden="true"></i>
+                            <a target="_blank" href="https://api.whatsapp.com/send?phone=+34{{ only_user.tlf }}&text=Hola, e visto tu perfil en http://escort69.live">+34{{ only_user.tlf }}</a>
+                            <i class="fa fa-phone highlight2"></i> <a target="_blank" href="tel:{{ only_user.tlf }}">{{ only_user.tlf }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="isotope_container isotope row masonry-layout columns_padding_5 columns_padding_top_0 columns_margin_bottom_10" style="position: relative; height: 11111111px;">
+                        {% for image in list_fotos %}
+                            {% if image is empty %}
+                            {% else %}
+                                <div class="isotope-item col-xlg-3 col-lg-4 col-sm-6 tests" style="position: absolute; left: 0; top: 0;">
+                                    <div class="vertical-item content-absolute text-center">
+                                        <div class="item-media">
+                                            <img src="{{ asset('/image/') }}{{ image }}" alt="Putas, sex,xxx, follar,{% if only_user.town is defined %}{{only_user.town}}{% endif %} ">
+                                            <div class="media-links">
+                                                <div class="links-wrap">
+                                                    <a class="p-view prettyPhoto " title="" data-gal="prettyPhoto[gal]" href="{{ asset('/image/') }}{{ image }}"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /ajustes/
+Allow: /*
+
+Host: escort69.live
+Sitemap: http://escort69.live/sitemap.xml

@@ -1,0 +1,53 @@
+.onespam{
+    margin-top: 44px;
+    padding: 0px;
+
+    display: inline-block;;
+}
+.onespam img{
+    width: 222px;
+    height: 244px;
+}
+.nameuser{
+    color: black;
+    text-align: center;
+    padding: 11px;
+    margin-top: 11px;
+    margin-bottom: 11px;
+    font-size: 19px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+}
+.nameuser a{
+    font-family: 'Playfair Display', serif;
+    font-weight: 400; color: black;
+}
+
+.onespam a:hover{
+    cursor: pointer;
+    color:#BE5580;
+}
+#user_Guardar, .login_submit{
+    margin-left: 45%;
+    margin-top: 47px;
+}
+
+.page_banner{
+    margin-top: 77px;
+}
+.ls a {
+    color: grey; font-size: 18px;
+}
+
+.ls .highlight2 {
+    font-size: 19px;
+}
+.town{
+    background:#B6517B;color:white;
+}
+.title_town{
+    color: white;
+}
+.title_town:hover{
+    color: white!important;
+}
