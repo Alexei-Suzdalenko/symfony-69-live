@@ -1,0 +1,60 @@
+<?php //%255B5c68ffb83cd0a38069b4f3bafebe18aa%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Query\\ParserResult'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\ParserResult')),
+        clone ($p['Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor')),
+        clone ($p['Doctrine\\ORM\\Query\\ResultSetMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\ResultSetMapping')),
+    ],
+    null,
+    [
+        'Doctrine\\ORM\\Query\\ParserResult' => [
+            '_sqlExecutor' => [
+                $o[1],
+            ],
+            '_resultSetMapping' => [
+                $o[2],
+            ],
+            '_parameterMappings' => [
+                [
+                    'customsex' => [
+                        0,
+                    ],
+                ],
+            ],
+        ],
+        'Doctrine\\ORM\\Query\\Exec\\AbstractSqlExecutor' => [
+            '_sqlStatements' => [
+                1 => 'SELECT d0_.id AS id_0, d0_.slug AS slug_1, d0_.image AS image_2, d0_.name AS name_3, d0_.slugprovince AS slugprovince_4, d0_.town AS town_5, d0_.townslug AS townslug_6, d0_.sex AS sex_7 FROM data_user d0_ WHERE d0_.sex = ? ORDER BY d0_.id DESC',
+            ],
+        ],
+        'stdClass' => [
+            'scalarMappings' => [
+                2 => [
+                    'id_0' => 'id',
+                    'slug_1' => 'slug',
+                    'image_2' => 'image',
+                    'name_3' => 'name',
+                    'slugprovince_4' => 'slugprovince',
+                    'town_5' => 'town',
+                    'townslug_6' => 'townslug',
+                    'sex_7' => 'sex',
+                ],
+            ],
+            'typeMappings' => [
+                2 => [
+                    'id_0' => 'integer',
+                    'slug_1' => 'string',
+                    'image_2' => 'string',
+                    'name_3' => 'string',
+                    'slugprovince_4' => 'string',
+                    'town_5' => 'string',
+                    'townslug_6' => 'string',
+                    'sex_7' => 'string',
+                ],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];
